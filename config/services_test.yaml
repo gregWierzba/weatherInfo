@@ -6,7 +6,3 @@
 parameters:
     locale: 'en'
 
-services:
-    GuzzleHttp\Client:
-        arguments:
-        - [proxy: hoverfly:8500]

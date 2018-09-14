@@ -45,8 +45,8 @@ services:
       image: jkris/mountebank:latest
       container_name: weatherinfo-mountebank
       volumes:
-      - ./tests/imposters:/imposters
-      command: --configfile /imposters/imposters.ejs --allowInjection
+      - ./tests/mountebank/imposters:/imposters
+      command: --configfile /imposters/imposters.ejs --allowInjection --loglevel debug
       ports:
       - "2525:2525"
       - "9090:9090"

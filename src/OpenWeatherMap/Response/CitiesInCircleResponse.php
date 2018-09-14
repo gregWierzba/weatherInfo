@@ -14,8 +14,17 @@ class CitiesInCircleResponse
 
     /**
      * @var array
-     * @JMS\Type("array<App\OpenWeatherMap\Response\CityWeather>")
+     * @JMS\Type("array<App\OpenWeatherMap\Response\City>")
      */
     private $list;
 
+    public function getMessage(): string
+    {
+        return $this->message;
+    }
+
+    public function getList(): array
+    {
+        return $this->list;
+    }
 }

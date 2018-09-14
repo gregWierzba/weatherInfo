@@ -58,10 +58,9 @@ class OwmClient
         ];
 
         $url = sprintf('%s?%s', $this->citiesEndpoint, http_build_query($queryParams));
-
-        $request = new Request('GET', $this->baseHost.'/'.$url);
+        $request = new Request('GET', $this->baseHost.$url);
         $resposne = $this->restClient->send($request);
         $responseObject = $this->serializer->deserialize($resposne->getBody()->getContents(), CitiesInCircleResponse::class,'json');
-        print_r($responseObject);
+        return $responseObject;
     }
 }
