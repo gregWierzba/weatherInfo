@@ -1,0 +1,115 @@
+{
+  "message": "accurate",
+  "cod": "200",
+  "count": 3,
+  "list": [
+    {
+      "id": 3094802,
+      "name": "Krakow",
+      "coord": {
+        "lat": 50.0833,
+        "lon": 19.9167
+      },
+      "main": {
+        "temp": 287.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 287.15,
+        "temp_max": 287.15
+      },
+      "dt": 1536703200,
+      "wind": {
+        "speed": 0.5,
+        "deg": 290
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+    },
+    {
+      "id": 3085041,
+      "name": "Śródmieście",
+      "coord": {
+        "lat": 50.0618,
+        "lon": 19.9396
+      },
+      "main": {
+        "temp": 287.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 287.15,
+        "temp_max": 287.15
+      },
+      "dt": 1536703200,
+      "wind": {
+        "speed": 0.5,
+        "deg": 290
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+    },
+    {
+      "id": 7530768,
+      "name": "Powiat krakowski",
+      "coord": {
+        "lat": 50.0999,
+        "lon": 19.9371
+      },
+      "main": {
+        "temp": 287.15,
+        "pressure": 1023,
+        "humidity": 93,
+        "temp_min": 287.15,
+        "temp_max": 287.15
+      },
+      "dt": 1536703200,
+      "wind": {
+        "speed": 0.5,
+        "deg": 290
+      },
+      "sys": {
+        "country": ""
+      },
+      "rain": null,
+      "snow": null,
+      "clouds": {
+        "all": 0
+      },
+      "weather": [
+        {
+          "id": 800,
+          "main": "Clear",
+          "description": "Sky is Clear",
+          "icon": "01n"
+        }
+      ]
+    }
+  ]
+}

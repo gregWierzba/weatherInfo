@@ -3,6 +3,7 @@
 namespace App\Tests\Integration\OpenWeatherMap;
 
 
+use App\Exception\OpenWeatherMapClientException;
 use App\OpenWeatherMap\Client\RestClient;
 use App\OpenWeatherMap\OwmClient;
 use App\OpenWeatherMap\Response\CitiesInCircleResponse;
@@ -22,15 +23,9 @@ class OwmClientTest extends TestCase
 
     const BASE_HOST = 'http://mountebank:9090';
     const CITIES_ENDPOINT = '/data/2.5/find';
+    const INVALID_CITIES_ENDPOINT = '/data/2.5/finx';
     const API_KEY = 'test_api_key';
-
-    /**
-     * @before
-     */
-    public function setup()
-    {
-        $this->prepareClient();
-    }
+    const INVALID_API_KEY = 'invalid_test_api_key';
 
     /**
      * @test
@@ -38,6 +33,8 @@ class OwmClientTest extends TestCase
      */
     public function it_gets_cities_weather()
     {
+        $this->prepareClient(self::API_KEY, self::CITIES_ENDPOINT);
+
         $expectedResponseLimit = 3;
         /** @var CitiesInCircleResponse $response */
         $response = $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
@@ -69,14 +66,42 @@ class OwmClientTest extends TestCase
         $this->assertEquals(800, $weatherDesc->getId());
     }
 
-    private function prepareClient()
+    /**
+     * @test
+     */
+    public function it_throws_exception_on_unauthorized()
+    {
+        $this->expectException(OpenWeatherMapClientException::class);
+
+        $this->prepareClient(self::INVALID_API_KEY, self::CITIES_ENDPOINT);
+
+        $expectedResponseLimit = 3;
+        /** @var CitiesInCircleResponse $response */
+        $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
+    }
+
+    /**
+     * @test
+     */
+    public function it_throws_exception_on_endpoint_error()
+    {
+        $this->expectException(OpenWeatherMapClientException::class);
+
+        $this->prepareClient(self::API_KEY, self::INVALID_CITIES_ENDPOINT);
+
+        $expectedResponseLimit = 3;
+        /** @var CitiesInCircleResponse $response */
+        $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
+    }
+
+    private function prepareClient(string $apiKey, string $endpoint)
     {
         $this->owmClient = new OwmClient(
             new RestClient(new Client()),
             SerializerBuilder::create()->build(),
             self::BASE_HOST,
-            self::CITIES_ENDPOINT,
-            self::API_KEY
+            $endpoint,
+            $apiKey
         );
     }
 

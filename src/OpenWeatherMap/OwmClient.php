@@ -2,6 +2,7 @@
 
 namespace App\OpenWeatherMap;
 
+use App\Exception\OpenWeatherMapClientException;
 use App\OpenWeatherMap\Client\RestClient;
 use App\OpenWeatherMap\Response\CitiesInCircleResponse;
 use GuzzleHttp\Psr7\Request;
@@ -48,6 +49,9 @@ class OwmClient
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * @throws OpenWeatherMapClientException
+     */
     public function getNearestCitiesWeather(float $lat, float $lon, int $limit = 10)
     {
         $queryParams = [
@@ -59,8 +63,8 @@ class OwmClient
 
         $url = sprintf('%s?%s', $this->citiesEndpoint, http_build_query($queryParams));
         $request = new Request('GET', $this->baseHost.$url);
-        $resposne = $this->restClient->send($request);
-        $responseObject = $this->serializer->deserialize($resposne->getBody()->getContents(), CitiesInCircleResponse::class,'json');
+        $response = $this->restClient->send($request);
+        $responseObject = $this->serializer->deserialize($response->getBody()->getContents(), CitiesInCircleResponse::class,'json');
         return $responseObject;
     }
 }
