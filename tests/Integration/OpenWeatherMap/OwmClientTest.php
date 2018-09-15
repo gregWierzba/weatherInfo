@@ -5,7 +5,7 @@ namespace App\Tests\Integration\OpenWeatherMap;
 
 use App\Exception\OpenWeatherMapClientException;
 use App\OpenWeatherMap\Client\RestClient;
-use App\OpenWeatherMap\OwmClient;
+use App\OpenWeatherMap\NearestCitiesWeatherRepository;
 use App\OpenWeatherMap\Response\CitiesInCircleResponse;
 use App\OpenWeatherMap\Response\City;
 use App\OpenWeatherMap\Response\WeatherDescription;
@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 class OwmClientTest extends TestCase
 {
     /**
-     * @var OwmClient
+     * @var NearestCitiesWeatherRepository
      */
     private $owmClient;
 
@@ -96,7 +96,7 @@ class OwmClientTest extends TestCase
 
     private function prepareClient(string $apiKey, string $endpoint)
     {
-        $this->owmClient = new OwmClient(
+        $this->owmClient = new NearestCitiesWeatherRepository(
             new RestClient(new Client()),
             SerializerBuilder::create()->build(),
             self::BASE_HOST,

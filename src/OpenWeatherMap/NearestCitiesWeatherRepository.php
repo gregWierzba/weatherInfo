@@ -8,7 +8,7 @@ use App\OpenWeatherMap\Response\CitiesInCircleResponse;
 use GuzzleHttp\Psr7\Request;
 use JMS\Serializer\SerializerInterface;
 
-class OwmClient
+class NearestCitiesWeatherRepository
 {
     /**
      * @var RestClient

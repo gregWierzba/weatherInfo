@@ -35,7 +35,7 @@ services:
         arguments:
             - []
 
-    App\OpenWeatherMap\OwmClient:
+    App\OpenWeatherMap\NearestCitiesWeatherRepository:
         arguments:
             $baseHost: '%owm_base_host%'
             $citiesEndpoint: '%owm_cities_endpoint%'

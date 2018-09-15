@@ -2,12 +2,11 @@
 
 namespace App\Controller;
 
-use App\OpenWeatherMap\OwmClient;
-use FOS\RestBundle\Controller\Annotations as Rest;
+use App\OpenWeatherMap\NearestCitiesWeatherRepository;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\Version;
-use GuzzleHttp\Psr7\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use FOS\RestBundle\Controller\Annotations\Version;
+use FOS\RestBundle\Controller\Annotations as Rest;
 
 /**
  * @Version("v1.0")
@@ -17,7 +16,7 @@ class ApiController extends FOSRestController
     /**
      * @Rest\Get("/api/{version}/current")
      */
-    public function index(OwmClient $client): JsonResponse
+    public function index(NearestCitiesWeatherRepository $client): JsonResponse
     {
         $expectedResponseBody = [
             'weather' => [
