@@ -36,5 +36,28 @@ class WeatherMain
      */
     private $humidity;
 
+    public function getTemp(): float
+    {
+        return $this->temp;
+    }
 
+    public function getTempMin(): float
+    {
+        return $this->temp_min;
+    }
+
+    public function getTempMax(): float
+    {
+        return $this->temp_max;
+    }
+
+    public function getPressure(): int
+    {
+        return $this->pressure;
+    }
+
+    public function getHumidity(): int
+    {
+        return $this->humidity;
+    }
 }

@@ -33,8 +33,9 @@ class City
     /**
      * @var array
      * @JMS\Type("array<App\OpenWeatherMap\Response\WeatherDescription>")
+     * @JMS\SerializedName("weather")
      */
-    private $weather;
+    private $weatherDesc;
 
     /**
      * @var \DateTime
@@ -47,5 +48,35 @@ class City
     public function setDate(int $timestamp)
     {
         $this->date = new \DateTime("@$timestamp");
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getCoord(): array
+    {
+        return $this->coord;
+    }
+
+    public function getMain(): WeatherMain
+    {
+        return $this->main;
+    }
+
+    public function getWeatherDesc(): array
+    {
+        return $this->weatherDesc;
+    }
+
+    public function getDate(): \DateTime
+    {
+        return $this->date;
     }
 }

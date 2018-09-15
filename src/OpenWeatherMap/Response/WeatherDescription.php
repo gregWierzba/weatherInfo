@@ -11,4 +11,9 @@ class WeatherDescription
      * @JMS\Type("int")
      */
     private $id;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
 }
