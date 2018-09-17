@@ -61,10 +61,19 @@ class NearestCitiesWeatherRepository
             'APPID' => $this->apiKey
         ];
 
-        $url = sprintf('%s?%s', $this->citiesEndpoint, http_build_query($queryParams));
-        $request = new Request('GET', $this->baseHost.$url);
+        $url = $this->buildUrl($queryParams);
+        $request = new Request('GET', $url);
         $response = $this->restClient->send($request);
-        $responseObject = $this->serializer->deserialize($response->getBody()->getContents(), CitiesInCircleResponse::class,'json');
+        $responseObject = $this->serializer->deserialize(
+            $response->getBody()->getContents(),
+            CitiesInCircleResponse::class,
+            'json'
+        );
         return $responseObject;
+    }
+
+    private function buildUrl($queryParams): string
+    {
+        return sprintf('%s%s?%s', $this->baseHost, $this->citiesEndpoint, http_build_query($queryParams));
     }
 }
