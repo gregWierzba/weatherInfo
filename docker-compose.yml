@@ -24,10 +24,13 @@ services:
           - .:/application
           - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
-       - "8080:80"
+       - "80:80"
 
     php-fpm:
       build: phpdocker/php-fpm
+      environment:
+        XDEBUG_CONFIG: remote_host=172.18.0.1 remote_port=9001 idekey=PHPSTORM remote_enable=On
+        PHP_IDE_CONFIG: "serverName=http://weatherinfo.local"
       container_name: weatherinfo-php-fpm
       working_dir: /application
       volumes:

@@ -6,3 +6,11 @@
 parameters:
     locale: 'en'
 
+services:
+    App\OpenWeatherMap\NearestCitiesWeatherRepository:
+        arguments:
+            $restClient: '@App\OpenWeatherMap\Client\RestClient'
+            $serializer: '@JMS\Serializer\SerializerInterface'
+            $baseHost: 'mountebank:9090'
+            $citiesEndpoint: '%owm_cities_endpoint%'
+            $apiKey: 'test_api_key'
