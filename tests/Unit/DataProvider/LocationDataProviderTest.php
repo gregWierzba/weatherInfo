@@ -39,6 +39,7 @@ class LocationDataProviderTest extends TestCase
         $location = new Location($lat, $lon);
 
         $currentWeather = $this->getMockBuilder(Weather::class)
+            ->disableOriginalConstructor()
             ->getMock();
 
         $this->weatherProvider->expects($this->once())
