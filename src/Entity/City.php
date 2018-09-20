@@ -29,12 +29,9 @@ class City
     private $name;
 
     /**
-     * @ORM\Column(type="decimal", precision=6, scale=3)
+     * @var Location
+     * @ORM\OneToOne(targetEntity="Location")
+     * @ORM\JoinColumn(name="location_id", referencedColumnName="id")
      */
-    private $lat;
-
-    /**
-     * @ORM\Column(type="decimal", precision=6, scale=3)
-     */
-    private $lon;
+    private $location;
 }
