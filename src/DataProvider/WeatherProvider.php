@@ -17,7 +17,7 @@ class WeatherProvider
      */
     private $citiesWeatherRepository;
 
-    const CITIES_LIMIT = 1;
+    const CITIES_LIMIT = 3;
 
     public function __construct(NearestCitiesWeatherRepository $citiesWeatherRepository)
     {

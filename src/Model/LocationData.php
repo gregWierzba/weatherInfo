@@ -2,10 +2,13 @@
 
 namespace App\Model;
 
+use JMS\Serializer\Annotation as JMS;
+
 class LocationData
 {
     /**
      * @var Weather
+     * @JMS\Type("App\Model\Weather")
      */
     private $currentWeather;
 

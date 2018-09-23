@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use App\OpenWeatherMap\NearestCitiesWeatherRepository;
+use App\DataProvider\LocationDataProvider;
+use App\Model\Location;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcher;
+use JMS\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\RestBundle\Controller\Annotations\Version;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -19,29 +21,22 @@ class ApiController extends FOSRestController
      * @Rest\QueryParam(name="lat", requirements="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$", default="null")
      * @Rest\QueryParam(name="lon", requirements="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$", default="null")
      */
-    public function index(ParamFetcher $paramFetcher, NearestCitiesWeatherRepository $client): JsonResponse
-    {
+    public function currentWeather(
+        ParamFetcher $paramFetcher,
+        LocationDataProvider $locationDataProvider,
+        SerializerInterface $serializer
+    ): JsonResponse {
         $lat = $paramFetcher->get('lat');
         $lon = $paramFetcher->get('lon');
 
-        $expectedResponseBody = [
-            'weather' => [
-                'general' => 500,
-                'temp' => 28.5,
-                'pressure' => 1013.75,
-                'humidity' => 90
-            ],
-            'wind' => [
-                'speed' => 5.85,
-                'deg' => 289
-            ],
-            'clouds' => 75,
-            'rain' => 3
-        ];
-        $client->getNearestCitiesWeather($lat, $lon, 3);
-//        $request = new Request('GET', 'http://ip.jsontest.com/');
-//        $resposne = $restClient->send($request);
+        $location = new Location($lat, $lon);
+        $response = $locationDataProvider->getCurrentDataForLocation($location);
 
-        return new JsonResponse($expectedResponseBody, JsonResponse::HTTP_OK);
+        return new JsonResponse(
+            $serializer->serialize($response, 'json'),
+            JsonResponse::HTTP_OK,
+            [],
+            true
+        );
     }
 }

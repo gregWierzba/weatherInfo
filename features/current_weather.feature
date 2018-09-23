@@ -9,17 +9,11 @@ Feature: Weather feature
     And the JSON should be equal to:
     """
     {
-      "weather": {
-        "general": 500,
-        "temp": 28.5,
-        "pressure": 1013.75,
-        "humidity": 90
-      },
-      "wind": {
-        "speed": 5.85,
-        "deg": 289
-      },
-      "clouds": 75,
-      "rain": 3
+      "current_weather": {
+        "general": 800,
+        "temp": 287.15,
+        "pressure": 1023,
+        "humidity": 93
+      }
     }
     """

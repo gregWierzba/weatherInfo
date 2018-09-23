@@ -2,20 +2,20 @@ default:
     suites:
         default:
             contexts:
-            - FeatureContext:
-                  kernel: '@kernel'
             - Behat\MinkExtension\Context\MinkContext
             - behatch:context:json
             - behatch:context:rest
     extensions:
-        Behat\Symfony2Extension:
+        FriendsOfBehat\SymfonyExtension:
+            env_file: .env_test
             kernel:
-                bootstrap: features/bootstrap/bootstrap.php
-                class: App\Kernel
-                env: 'test'
+                bootstrap: ~
+                class: 'App\Kernel'
+                path: src/Kernel.php
+                debug: true
         Behat\MinkExtension:
             base_url: "http://example.com/"
             sessions:
                 default:
-                    symfony2: ~
+                    symfony: ~
         Behatch\Extension: ~

@@ -37,7 +37,7 @@ class OwmClientTest extends TestCase
 
         $expectedResponseLimit = 3;
         /** @var CitiesInCircleResponse $response */
-        $response = $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
+        $response = $this->owmClient->getNearestCitiesWeather(50.082961, 19.937348, $expectedResponseLimit);
 
         $this->assertInstanceOf(CitiesInCircleResponse::class, $response);
         $this->assertCount($expectedResponseLimit, $response->getList());
@@ -77,7 +77,7 @@ class OwmClientTest extends TestCase
 
         $expectedResponseLimit = 3;
         /** @var CitiesInCircleResponse $response */
-        $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
+        $this->owmClient->getNearestCitiesWeather(50.082961, 19.937348, $expectedResponseLimit);
     }
 
     /**
@@ -91,7 +91,7 @@ class OwmClientTest extends TestCase
 
         $expectedResponseLimit = 3;
         /** @var CitiesInCircleResponse $response */
-        $this->owmClient->getNearestCitiesWeather(50.082961, 19.9373487, $expectedResponseLimit);
+        $this->owmClient->getNearestCitiesWeather(50.082961, 19.937348, $expectedResponseLimit);
     }
 
     private function prepareClient(string $apiKey, string $endpoint)

@@ -14,15 +14,6 @@
     "behat/mink-extension": {
         "version": "2.3.1"
     },
-    "behat/symfony2-extension": {
-        "version": "2.1",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "2.1",
-            "ref": "6b63fb76d3bb2dd16098f12adf6d6ca844e21862"
-        }
-    },
     "behat/transliterator": {
         "version": "1.2-dev"
     },
@@ -115,6 +106,9 @@
     },
     "fig/link-util": {
         "version": "1.0.0"
+    },
+    "friends-of-behat/symfony-extension": {
+        "version": "v1.2.2"
     },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
